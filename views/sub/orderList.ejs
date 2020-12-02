@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>리뷰</title>
+</head>
+<script type="text/javascript">
+    function parents() {
+        if (document.getElementById("show").style.display == "block") {
+            document.getElementById("show").style.display = "none";
+        } else {
+            document.getElementById("show").style.display = "block";
+        }
+    }
+</script>
+<style>
+  img{
+    width: 100x;
+    height: 100px;
+  }
+  .order_list{
+    transform: translate(-50%,-50%);
+    position: absolute;
+    top: 30%;
+    left: 50%;
+  }
+  body h1,
+    form {
+        text-align: center;
+
+    }
+
+    table {
+        margin-left: auto;
+        margin-right: auto;
+        width: 80%;
+        border-top: 1px solid #444444;
+        border-collapse: collapse;
+    }
+    th{
+      font-size: 24px;
+    }
+    td{
+      font-size: 21px;
+    }
+    img{
+      width: 150px;
+      height: 150px;
+    }
+    th,
+    td {
+        border-bottom: 1px solid #444444;
+        padding: 10px;
+        text-align: center;
+    }
+    .ol_img{
+      width: 160px;
+    }
+    .ol_name{
+      width: 300px;
+    }
+    .ol_state{
+      width: 200px;
+    }
+    .ol_date{
+      width: 300px;
+    }
+    .ol_price{
+      width: 200px;
+    }
+</style>
+
+<body>
+  <div class = "order_list">
+    <h1>주문내역</h1>
+    <table>
+      <thead>
+        <tr>
+          <th class="ol_date">주문날짜</th>
+          <th class="ol_img">이미지</th>
+          <th class="ol_name">상품 이름</th>
+          <th class="ol_state">주문 상태</th>
+          <th class="ol_price">주문 가격</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%for(var i = 0;i<order_no.length; i++) {
+        var imgArray = img[i].split(",");
+        var nameArray = name[i].split(",")%>
+        <tr>
+            <td><%=date[i]%></td>
+
+          <td><%for(var j = 0; j<imgArray.length; j++){%><img src = "/<%=imgArray[j]%>", alt=""></br>  <%}%></td>
+
+          <td><%for(var k = 0; k<nameArray.length; k++){%><%=nameArray[k]%></br> <%}%></td>
+          <td><%=state[i]%></br></td>
+          <td><%=price[i]%></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <%}%>
+      </tbody>
+    </table>
+  </div>
+  <div>
+        <%for(var i = 0;i<order_no2.length; i++) {
+            var imgArray2 = img2[i].split(",");
+            var nameArray2 = name2[i].split(",")%>
+            <%for(var l = 0;l<data2.length; l++) { %>
+        <form class="order" action="/order/review/<%=data2[l].entrep_id%>" method="POST">
+            <%}%>
+        <h1>구매내역</h1>
+        <table>
+          <thead>
+            <tr>
+              <th>주문날짜</th>
+              <th>이미지</th>
+              <th>상품 이름</th>
+
+              <th>주문 상태</th>
+              <th>주문 가격</th>
+              <th></th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+                <td><%=date2[i]%></td>
+
+              <td><%for(var j = 0; j<imgArray2.length; j++){%><img src = "/<%=imgArray2[j]%>", alt=""></br>  <%}%></td>
+
+              <td><%for(var k = 0; k<nameArray2.length; k++){%><%=nameArray2[k]%></br> <%}%></td>
+              <td><%=state2[i]%></br></td>
+              <td><%=price2[i]%></td>
+              <td><a href="/detail/<%=entrep2[i]%>">업체정보</a></td>
+              <td> <input type="button" onclick="parents();" value="리뷰달기" /></td>
+              <td><div id="show"  style="display: none;">
+                    <textarea name=review_content cols=65 rows=15></TEXTAREA><br>
+                    <input type="number" name="review_grade" min="1" max="5" step="1" value="5"/>
+                    <input type="submit" value="확인" /><br>
+                </div></td>
+            </tr>
+            <%}%>
+          </tbody>
+        </table>
+        </form>
+      </div>
+</body>
+
+</html>

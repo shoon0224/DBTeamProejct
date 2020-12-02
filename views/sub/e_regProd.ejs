@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <title>상품등록</title>
+   <style type="text/css">
+   td{
+     margin: 20px;
+     padding: 5px;
+   }
+   .filebox1 label{
+      display: inline-block;
+      padding: .5em .75em;
+      color: #fff;
+      font-size: inherit;
+      line-height: normal;
+      vertical-align: middle;
+      background-color: #ff96c3;
+      cursor: pointer;
+      border: 1px solid #ff96c3;
+      border-radius: .25em;
+      -webkit-transition: background-color 0.2s;
+      transition: background-color 0.2s;
+   }
+
+   .filebox1 label:hover{
+      background-color: #e77fff;
+   }
+
+   .filebox1 label:active{
+      background-color: #da20f7;
+   }
+
+   .filebox1 input[type="file"]{
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+   }
+      .regProd{
+        text-align: center;
+        transform: translate(-50%, -30%);
+        position: absolute;
+        top: 30%;
+        left: 50%;
+      }
+      img{
+        height: 150px;
+        width: 150px;
+      }
+      #class_id, #name, #price, #state{
+        width: 250px;
+        height: 30px;
+        border-width: 1px;
+        border-style: solid;
+        border-color: black;
+        color: black;
+        font-size: 15px;
+
+      }
+   </style>
+</head>
+<body>
+  <div class="regProd">
+    <h1>상품 등록</h1>
+    <form class="regist" action="/entrep/e_regProd" method="POST" enctype="multipart/form-data">
+      <table>
+        <thead>
+        </thead>
+        <tbody>
+          <tr>
+            <td colspan="2">
+              <div class="filebox1">
+                <label for="file">사진 업로드</label>
+                <input type='file' name="photo" id="file" />
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>제품분류</td>
+            <td><input type="text" id="class_id" name="class_id" placeholder="제품분류"/></td>
+          </tr>
+          <tr>
+            <td>제품 명</td>
+            <td><input type="text" id="name" name="name" placeholder="제품 이름" /></td>
+          </tr>
+          <tr>
+            <td>제품가격</td>
+            <td><input type="text" id="price" name="price" placeholder="제품 가격" /></td>
+          </tr>
+          <tr>
+            <td>판매상태</td>
+            <td>
+              <select id = "state" name = "state">
+                <option value="판매중">판매중</option>
+                <option value="판매중지">판매중지</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+                <label for="file">사진 업로드</label>
+                <input type='file' name="photo" />
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+                <label for="file">사진 업로드</label>
+                <input type='file' name="photo"/>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+                <label for="file">사진 업로드</label>
+                <input type='file' name="photo"/>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <input type="submit" value="등록하기" />
+    </form>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>주문하기</title>
+</head>
+<style>
+    .order{
+      text-align: center;
+      transform: translate(-50%, 0);
+      position: absolute;
+      left: 50%;
+      top:20%;
+    }
+    .detail {
+        float: left;
+    }
+    th{
+      font-size: 24px;
+    }
+    td{
+      font-size: 21px;
+    }
+    img{
+      width: 150px;
+      height: 150px;
+    }
+    .o_img{
+      width: 160px;
+    }
+    .o_entrep{
+      width: 300px;
+    }
+    .o_count{
+      width: 150px;
+    }
+    .o_price{
+      width: 200px;
+    }
+</style>
+<body>
+  <div class="order">
+    <%for(var i=0;i<data.length; i++) { %>
+        <%if(data[i].cart_prod_count){%>
+    <form class="detail" action="/order/cartOrder" method="POST" style="width: 100%; height: 1000px;" >
+        <%}else{%>
+            <form class="detail" action="/order/orders/<%=data[i].prod_id%>" method="POST" style="width: 100%; height: 1000px;">
+        <%}%>
+        <div class="detail"  style="width: 100%;">
+                <div style="margin-left: 10%; margin-right: 10%;" >
+                        <h1><%=data[i].prod_name%></h1>
+                        <div>
+                            <hr style="border: 3px solid black;" />
+                        </div>
+                        <table style="width: 100%; text-align: center;">
+                            <thead>
+                                <tr>
+                                    <th class="o_img">상품이미지</th>
+                                    <th class="o_entrep">업체이름</th>
+                                    <th class="o_count">상품수량</th>
+                                    <th class="o_price">상품가격</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><img src="/<%=data[i].prod_img%>" width="200" height="150"  alt="이미지파일"/></td>
+                                    <td><%=data[i].entrep_mutual_name%></td>
+                                    <%if(data[i].cart_prod_count){%>
+                                        <td><input type="text" name="amount" size="10" readonly="<%=data[i].cart_prod_count %>" value="<%=data[i].cart_prod_count %>"></td>
+                                        <td><input type="text" name="o_price"size="10" readonly="<%= data[i].cart_prod_price %>"value="<%=data[i].cart_prod_price %>"></td>
+                                    <%}else{%>
+                                        <td><input type="text" name="amount" size="10" readonly="<%=o_num %>" value="<%=o_num %>"></td>
+                                        <td><input type="text" name="o_price"size="10" readonly="<%= price %>"value="<%=price %>"></td>
+                                    <%}%>
+                                </tr>
+                            </tbody>
+                        </table>
+                </div>
+          </div>
+          <%} %>
+     <div class="detail"  style="width: 100%;">
+            <div style="margin-left: 10%; margin-right: 50%;" >
+                    <h1 style="width=100%;">주문 정보</h1>
+                    <div>
+                            <hr style="border: 3px solid black; width = 100%;" />
+                        </div>
+                    <h3><%=sess.info.member_name%></h3>
+                    <input type="text" name="o_tel" size="40"  value="<%=sess.info.member_tel_no%>">
+            </div>
+
+            <div style="margin-left: 10%; margin-right: 50%; margin-top:5%" >
+                    <h1>카드정보</h1>
+                    <div>
+                            <hr style="border: 3px solid black;" />
+                        </div>
+                    <%for(var i=0;i<data2.length; i++) { %>
+                    <td><input type="text" name="card_no" size="10" readonly="<%=data2[i].card_no %>" value="<%=data2[i].card_no %>"></td>
+                    <h3><%=data2[i].card_type%></h3>
+                    <%}%>
+
+            </div>
+            <div style="margin-left: 10%; margin-right: 50%; margin-top:5%" >
+                <h1>희망수령일</h1>
+                <div>
+                        <hr style="border: 3px solid black;" />
+                    </div>
+                <input type="datetime-local" id="order_hop_rec" name="order_hop_rec"/>
+                <input type="submit" class="btn"  style="padding-top:5px; padding-bottom:5px; margin-top: 10px; margin-bottom: 10px; font-size: 15px; background-color:#3498DB;
+                width:300px; border-style: none; color: white;" value="결제">
+        </div>
+        </div>
+    </form>
+  </div>
+
+</body>
+
+</html>

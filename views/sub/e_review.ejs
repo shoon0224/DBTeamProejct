@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>리뷰</title>
+</head>
+
+<style>
+  .review{
+    transform: translate(-50%, -50%);
+    position: absolute;
+    top: 30%;
+    left:50%;
+    text-align: center;
+  }
+  .r_contet{
+    width: 500px;
+    padding: 5px;
+  }
+  .r_grade{
+    width:80px;
+  }
+  .r_date{
+    width: 270px;
+  }
+  .r_name{
+    width: 120px;
+  }
+  td{
+    font-size: 21px;
+  }
+  th{
+    font-size: 24px;
+  }
+</style>
+
+<body>
+  <div class="review">
+    <h1>작성된 리뷰<h1>
+    <table>
+      <thead>
+        <tr>
+          <th class="r_grade">평점</th>
+          <th class="r_contet">리뷰</th>
+          <th class="r_date">작성일</th>
+          <th class="r_name">작성자</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%for(var i = 0;i<data.length; i++) { %>
+        <tr>
+          <td><%=data[i].review_grade%></td>
+          <td style="height : 100px"><%=data[i].review_content%></td>
+          <td><%=data[i].review_date%></td>
+          <td><%=data[i].member_name%></td>
+        </tr>
+        <%}%>
+      </tbody>
+    </table>
+  </div>
+</body>
+
+</html>

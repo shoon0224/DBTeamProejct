@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>메인화면</title>
+</head>
+
+<style>
+button, #delete{
+  border-color: #551A8B;
+  background-color: #551A8B;
+  color: #F1FFDB;
+}
+  table{
+    font-size: 18px;
+  }
+  .m_prod{
+    text-align: center;
+    transform: translate(-50%,0%);
+    position: absolute;
+    top: 15%;
+    left: 50%;
+  }
+  img{
+    width: 150px;
+    height: 150px;
+  }
+  .p_img{
+    width: 160px;
+  }
+  .p_name{
+    width: 200px;
+  }
+  .p_state{
+    width: 100px;
+  }
+  .p_class{
+    width: 300px;
+  }
+  .p_price{
+    width: 100px;
+  }
+  .p_check{
+    width: 150px;
+  }
+</style>
+
+<body>
+  <div class="m_prod">
+    <h1>상품 관리<h1>
+    <button type="button" name = "버튼" onclick="location.href='./e_regProd'">상품 추가</button>
+    <table>
+      <thead>
+        <tr> 
+          <th class="p_img">상품 이미지</th>
+          <th class="p_name">상품 이름</th>
+          <th class="p_state">상품상태</th>
+          <th class="p_class">상품 분류</th>
+          <th class="p_price">상품 가격</th>
+          <th class="p_check"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%for(var i = 0;i<data.length; i++) { %>
+        <tr>
+          <td><img src = "/<%=data[i].prod_img%>"/></td>
+          <td><a href="/prodDetail/<%=data[i].prod_id%>/<%=sess.info.entrep_id%>"><%=data[i].prod_name%></a></td>
+          <td><%=data[i].prod_state%></td>
+          <td><%=data[i].prod_class_id%></td>
+          <td><%=data[i].prod_price%></td>
+          <td>
+            <form class="delete" action="./e_delProd/:<%=data[i].prod_id%>" method="post">
+              <input id = "delete" type="submit" name="delete" value="삭제">
+            </form>
+            <button type="button" name="modify" onclick="location.href = './e_modProd/<%=data[i].prod_id%>'">수정</button>
+          </td>
+        </tr>
+        <%}%>
+      </tbody>
+    </table>
+  </div>
+</body>
+
+</html>

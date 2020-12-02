@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+</head>
+<style>
+  fieldset {  position: relative;  display: inline-block;  padding: 0 0 0 40px;  background: #fff;  border: none;  border-radius: 5px; }
+  body h2,form{
+   text-align: center;
+
+  }
+    table {
+      margin-left: auto;
+      margin-right: auto;
+      width: 80%;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 10px;
+      text-align: center;
+    }
+    th{
+      font-size: 24px;
+    }
+    td{
+      font-size: 21px;
+    }
+    .p_img{
+      width: 210px;
+    }
+    .p_name{
+      width: 300px;
+    }
+    .p_state{
+      width: 200px;
+    }
+    .p_class{
+      width: 300px;
+    }
+    .p_price{
+      width: 200px;
+    }
+    .prod_List{
+      position: absolute;
+      transform: translate(-50%, 0);
+      top: 15%;
+      left: 50%;
+
+    }
+  </style>
+<body>
+<div class="prod_List">
+  <div class = "list_head" style="text-align: center;">
+      <img class = "list_logo" src="/<%=data[0].entrep_logo%>" width="150" height="150"  alt="이미지파일"/>
+      <h1 class = "title">상품게시판</h1>
+  </div>
+<table>
+  <thead>
+  <tr>
+    <th class="p_img">상품 이미지</th>
+    <th class="p_name">상품이름</th>
+    <th class="p_class">상품상태</th>
+    <th class="p_class">상품분류</th>
+    <th class="p_price">상품가격</th>
+  </tr>
+  </thead>
+  <tbody>
+  <%for(var i=0;i<data.length; i++) { %>
+    <tr>
+      <th><a href="/prodDetail/<%=data[i].prod_id%>/<%=data[i].entrep_id%>"><img src="/<%=data[i].prod_img%>" width="200" height="150"  alt="이미지파일"/></a></th>
+      <td><%=data[i].prod_name%></td>
+      <td><%=data[i].prod_state%></td>
+      <td><%=data[i].prod_class_id%></td>
+      <td><%=data[i].prod_price%></td>
+    </tr>
+    <% } %>
+  </tbody>
+</table>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>장난감 상세보기</title>
+</head>
+<style>
+    .detail_entrep{
+      text-align: center;
+      transform: translate(-50%,0);
+      position: absolute;
+      left: 50%;
+      top:15%;
+    }
+    img{
+      width: 400px;
+      height: 500px;
+    }
+    td.name{
+      width: 200px;
+    }
+    td.att{
+      width: 300px;
+    }
+    th{
+      font-size: 24px;
+    }
+    td{
+      font-size: 21px;
+    }
+    .board, .regEnt{
+      float: right;
+    }
+    .board{
+      font-size: 30px;
+    }
+    .entrep_mutual_name{
+      margin:0;
+    }
+    .entrep_head{
+      position: relative;
+      width: 100%;
+    }
+    .r_contet{
+      width: 500px;
+      padding: 5px;
+    }
+    .r_grade{
+      width:80px;
+    }
+    .r_date{
+      width: 270px;
+    }
+    .r_name{
+      width: 120px;
+    }
+</style>
+
+<body>
+  <div class="detail_s">
+    <div class="detail_entrep">
+      <div class="entrep_head">
+        <h1 class = "entrep_mutual_name"><%=data[0].entrep_mutual_name%><h1>
+          <form class="regEnt" action="/members/like/<%= data[0].entrep_id %>" method="post">
+            <input type="submit" value="관심업체등록">
+          </form>
+      </div>
+      <div>
+        <table id = "detail">
+          <thead>
+            <tr>
+              <td class = "img"></td>
+              <td class = "name"></td>
+              <td class = "att"></td>
+            </tr>
+          </thead>
+            <tbody>
+              <tr>
+                <td rowspan="8"><img src="/<%=data[0].entrep_logo%>" alt=""></td>
+                <td>사업자 등급</td>
+                <td><%=data[0].entrep_grade%></td>
+              </tr>
+              <tr>
+                <td>사업자번호</td>
+                <td><%=data[0].entrep_reg_num%></td>
+              </tr>
+              <tr>
+                <td>주소</td>
+                <td><%=data[0].entrep_address%></td>
+              </tr>
+              <tr>
+                <td>연락처</td>
+                <td> <%=data[0].entrep_tel_no%></td>
+              </tr>
+              <tr>
+                <td>상태</td>
+                <td><%=data[0].entrep_state%></td>
+              </tr>
+              <tr>
+                <td>분류</td>
+                <td><%=data[0].entrep_class_name%></td>
+              </tr>
+                <td>평점</td>
+                <td><%=data[0].entrep_review_grade%></td>
+              <tr>
+                <td>이메일</td>
+                <td><%=data[0].entrep_email%></td>
+              </tr>
+            </tbody>
+        </table>
+        <a class = "board" href="/prodList/<%= data[0].entrep_id %>">상품게시판</a>
+    </div>
+    <div class="review">
+      <hr style="border=3px;"/>
+      <h1>리뷰</h1>
+      <table>
+        <thead>
+          <tr>
+            <th class="r_grade">평점</th>
+            <th class="r_contet">리뷰</th>
+            <th class="r_date">작성일</th>
+            <th class="r_name">작성자</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%for(var i=0;i<data2.length; i++) { %>
+          <tr>
+              <td><%=data2[i].review_grade%></td>
+              <td><%=data2[i].review_content%></td>
+              <td><%=data2[i].rdate%></td>
+              <td><%=data2[i].member_id%></td>
+          </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+
+</html>

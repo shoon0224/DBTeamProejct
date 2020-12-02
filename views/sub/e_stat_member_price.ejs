@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>통계</title>
+    <style type="text/css">
+      .stat_member_price{
+        transform: translate(-50%, -50%);
+        position: absolute;
+        top: 50%;
+        left:50%;
+      }
+      input,button{
+        border-width: 1px;
+        border-style: solid;
+        border-color: #551A8B;
+        background-color: #551A8B;
+        color: #F1FFDB;
+      }
+      button{
+
+      }
+    </style>
+</head>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+
+<body>
+
+  <div class="stat_member_price">
+    <h1>구매금액</h1>
+    <div class="bar">
+      <button onclick="location.href = './e_stat_member_price'">구매금액</button>
+      <button onclick="location.href = './e_stat_member_sum'">구매횟수</button>
+    </div>
+    <div style="width:800px">
+      <canvas id="chartPrice"></canvas>
+    </div>
+    <div>
+      <br>
+        <form class="calendar" action="./e_stat_member_price" method="post">
+          <label>시작 날짜</label>
+            <input type="date" name="sdate" value="">
+          <label>종료 날짜</label>
+            <input type="date" name="edate" value="">
+            <input type="submit" name="submit" value="설정">
+        </form>
+    <div>
+    <script>
+      var ctx = document.getElementById("chartPrice").getContext('2d');
+      var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: "<%=member_name%>".split(','),
+            datasets: [{
+                label: "<%=member_name%>".split(','),
+                data: "<%=member_price%>".split(','),
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            maintainAspectRatio: true,
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero:true
+                    }
+                }]
+            }
+        }
+    });
+    </script>
+  </div>
+</body>
+</html>

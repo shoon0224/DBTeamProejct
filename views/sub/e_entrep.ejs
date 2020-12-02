@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <title>업체 정보 수정</title>
+   <style type="text/css">
+
+   td{
+     margin: 20px;
+     padding: 5px;
+   }
+     button{
+       border-color: #551A8B;
+       background-color: #551A8B;
+       color: #F1FFDB;
+     }
+     .entrep_mod{
+       transform: translate(-50%, -50%);
+       position: absolute;
+       top: 45%;
+       left : 50%;
+       text-align: center;
+     }
+     #mod_entrep_logo{
+       width: 150px;
+       height: 150px;
+       text-align: center;
+     }
+
+     .filebox label {
+        display: inline-block;
+        padding: .5em .75em;
+        color: #fff;
+        font-size: inherit;
+        line-height: normal;
+        vertical-align: middle;
+        background-color: #ff96c3;
+        cursor: pointer;
+        border: 1px solid #ff96c3;
+        border-radius: .25em;
+        -webkit-transition: background-color 0.2s;
+        transition: background-color 0.2s;
+     }
+
+     .filebox label:hover {
+        background-color: #e77fff;
+     }
+
+     .filebox label:active {
+        background-color: #da20f7;
+     }
+
+     .filebox input[type="file"] {
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        border: 0;
+     }
+     #id, #pw, #state, #address, #tel_no, #email, #class_id{
+       width: 250px;
+       height: 30px;
+       font-size: 15px;
+       border-width: 1px;
+       border-style: solid;
+       border-color: black;
+       color: black;
+     }
+   </style>
+</head>
+<body>
+  <div class="entrep_mod">
+    <h1>업체 정보 수정</h1>
+    <form class="inform" action="/entrep/e_entrep" method="POST" enctype="multipart/form-data">
+      <img id = "mod_entrep_logo"  src="/<%=data[0].entrep_logo%>" >
+    <table>
+      <thead>
+      </thead>
+      <tbody>
+        <tr>
+          <td colspan="2"><div class="filebox"><label for="file">사진 업로드</label><input type='file' name="photo" id="file" /></div></td>
+          <script type="text/javascript">
+              function readURL(input) {
+                  if (input.files && input.files[0]) {
+                      var reader = new FileReader();
+                      reader.onload = function(e) {
+                          $('#mod_entrep_logo').attr('src', e.target.result);
+                      }
+                      reader.readAsDataURL(input.files[0]);
+                  }
+              }
+
+              $("#file").change(function() {
+                  readURL(this);
+              });
+          </script>
+        </tr>
+        <tr>
+          <td>아이디</td>
+          <td><input type="text" id="id" name="id" value = "<%=data[0].entrep_id%>" placeholder="아이디" disabled/></td>
+        </tr>
+        <tr>
+          <td>비밀번호</td>
+          <td><input type="text" id="pw" name="pw" value = "<%=data[0].entrep_pwd%>" placeholder="비밀번호" /></td>
+        </tr>
+        <tr>
+          <td>상태</td>
+          <td>
+            <select id = "state" name = "state">
+              <option value="정상">정상</option>
+              <option value="휴점">휴점</option>
+              <option value="폐업">폐업</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>주소</td>
+          <td><input type="text" id="address" name="address" value = "<%=data[0].entrep_address%>"  placeholder="주소"/></td>
+        </tr>
+        <tr>
+          <td>전화번호</td>
+          <td><input type="text" id="tel_no" name="tel_no" value = "<%=data[0].entrep_tel_no%>"  placeholder="연락처"/></td>
+        </tr>
+        <tr>
+          <td>이메일</td>
+          <td><input type="text" id="email" name="email" value = "<%=data[0].entrep_email%>"  placeholder="이메일"/></td>
+        </tr>
+        <tr>
+          <td>업종</td>
+          <td>
+            <select id = "class_id" name = "class_id">
+            <option value="472">음·식료품 소매업</option>
+            <option value="473">정보통신장비 소매업</option>
+            <option value="474">섬유,의복,신발 및 가죽제품 소매업</option>
+            <option value="475">기타 가정용품 소매업</option>
+            <option value="476">문화, 오락 및 여가 용품 소매업</option>
+            <option value="477">연료 소매업</option>
+            <option value="561">음식점업</option>
+            <option value="562">주점 및 비알콜 음료점업</option>
+          </select>
+        </td>
+        </tr>
+      </tbody>
+    </table>
+      <input type="submit" value="수정" />
+    </form>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+</head>
+<style>
+    .cart{
+      transform: translate(-50%, -50%);
+      position: absolute;
+      top: 30%;
+      left: 50%;
+    }
+    body h1,
+    form {
+        text-align: center;
+
+    }
+    img{
+      width: 150px;
+      height: 150px;
+    }
+    .c_img{
+      width: 160px;
+    }
+    .c_name{
+      width: 300px;
+    }
+    .c_state{
+      width: 200px;
+    }
+    .c_count{
+      width: 150px;
+    }
+    .c_price{
+      width: 200px;
+    }
+    table {
+        margin-left: auto;
+        margin-right: auto;
+        width: 80%;
+        border-top: 1px solid #444444;
+        border-collapse: collapse;
+    }
+    th{
+      font-size: 24px;
+    }
+    td{
+      font-size: 21px;
+    }
+    th,
+    td {
+        border-bottom: 1px solid #444444;
+        padding: 10px;
+        text-align: center;
+    }
+
+    #orderlink{
+      position: relative;
+        left: 950px;
+        top: 10px;
+    }
+    #delete{
+      color:crimson;
+    }
+</style>
+<body>
+  <div class="cart">
+    <h1>장바구니</h1>
+    <table>
+      <thead>
+          <tr>
+              <th class="c_img">상품사진</th>
+              <th class="c_name">상품이름</th>
+              <th class="c_state">상품상태</th>
+              <th class="c_count">상품수량</th>
+              <th class="c_price">가격</th>
+              <th><br></th>
+            </tr>
+      </thead>
+      <tbody>
+        <%for(var i=0;i<data.length; i++) { %>
+        <tr>
+          <td><a href="/prodDetail/<%=data[i].prod_id%>"><img src="/<%=data[i].prod_img%>" width="200" height="150"  alt="이미지파일"/></a></td>
+          <td><%=data[i].prod_name%></td>
+          <td><%=data[i].prod_state%></td>
+          <td><%=data[i].cart_prod_count%></td>
+          <td><%=data[i].cart_prod_price%></td>
+          <td><a id="delete" href="/members/deleteCart/<%=data[i].prod_id%>/<%=data[i].entrep_id%>">삭제</a></td>
+          <t</t>
+        </tr>
+        <% } %>
+      </tbody>
+    </table>
+    <a id="orderlink" href="/order/cartOrder">모두구매하기</a>
+  </div>
+
+</body>
+
+</html>

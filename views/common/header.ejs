@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+<head>
+    <meta charset="UTF-8">
+    <style type="text/css">
+      @import url('https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap&subset=korean');
+      body{
+        width: 100%;
+        font-family: 'Do Hyeon', sans-serif;
+      }
+      a{
+        text-decoration : none;
+        color: #551A8B;
+      }
+      .search{
+        margin-top: 10px;
+        position: absolute;
+        transform: translate(-50%);
+        left: 50%;
+      }
+      .logo{
+        margin-top: 10px;
+        position: absolute;
+        left: 0%;
+      }
+      .inquire{
+        width: 500px;
+        height: 50px;
+        border-width: 4px;
+        border-style: solid;
+        border-color: #551A8B;
+        padding-top: 8px;
+      }
+      .basic,.entrep, .members{
+        position: absolute;
+        top: 80px;
+        font-size: 20px;
+        width: 100%;
+              color: #F1FFDB;
+      }
+      .entrep, .members{
+        margin-right: 10px;
+      }
+      .submit{
+        font-size: 20px;
+        height: 50px;
+        border-width: 4px;
+        border-style: solid;
+        border-color: #551A8B;
+        background-color: #551A8B;
+        color: #F1FFDB;
+      }
+      .logoutB{
+        border-color: #551A8B;
+        background-color: #551A8B;
+        color: #F1FFDB;
+        float: right;
+      }
+      .logout{
+        float: right;
+        width: auto;
+        margin-right: 10px;
+        font-family: 'Do Hyeon', sans-serif;
+      }
+      .header{
+        width : 100%;
+      }
+      .entrep_logo{
+        position: absolute;
+        transform: translate(-50%,0);
+        left:50%;
+      }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">
+            <a href="/"><font size = "15px">소상A+</font></a>
+        </div>
+        <form class="search" id = "search" action="/inquire" method="post">
+          <input class = "inquire" type="search" name="inquire">
+          <input class = "submit" type="submit" name="search" value="검색"/>
+        </form>
+        <%if(sess.info) {%>
+        <%if(sess.info.member_id) {%>
+          <div class="members">
+            <a class="a1" href="/members/userInfo"><%=sess.info.member_name%>님</a>
+            <a class="a1" href="/members/cart">장바구니</a>
+            <a class="a1" href="/order/orderList">주문관리</a>
+            <form class="logout" action="/logout" method="post">
+                <button class="logoutB" type="submit">로그아웃</button>
+            </form>
+          </div>
+
+        <% } if(sess.info.entrep_id){%>
+          <script type="text/javascript">
+            $('.search').hide();
+            $('.logo').hide();
+
+          </script>
+          <a class = "entrep_logo" href="/entrep/e_main"><font size = "15px">소상A+</font></a>
+          <div class = "entrep">
+            <a class="a1" href="/entrep/e_main"><%=sess.info.entrep_mutual_name%>님</a>
+            <a class="a1" href="/entrep/e_entrep">업체관리</a>
+            <a class="a1" href="/entrep/e_order">주문관리</a>
+            <form class="logout" action="/logout" method="post">
+                <button class="logoutB" type="submit">로그아웃</button>
+            </form>
+          </div>
+        <%}}else{%>
+          <div class = "basic">
+            <a class="a1" href="/login">로그인</a>
+            <a class="a1" href="/">업체등록하기</a>
+            <a class="a1" href="/">회원가입</a>
+          </div>
+        <% } %>
+      </div>
+    </div>
+</body>
+
+</html>

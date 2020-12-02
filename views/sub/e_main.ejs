@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>메인화면</title>
+</head>
+
+<style>
+.entrep_{
+  display: inline-block;
+  width: auto;
+  text-align: center;
+
+}
+.order{
+  height: 100%;
+  display: inline-block;
+  width: auto;
+  text-align: center;
+  margin-left: 40px;
+}
+#entrep_inform{
+  position: fixed;
+  top:50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+button{
+  border-color: #551A8B;
+  background-color: #551A8B;
+  color: #F1FFDB;
+}
+img{
+  height: 100px;
+  width: 100px;
+}
+table{
+  margin-bottom: 10px;
+}
+.o_no{
+  width: 55px;
+}
+.o_date{
+  width: 105px;
+}
+.o_price{
+  width: 55px;
+}
+.o_state{
+  width:30px;
+}
+</style>
+
+<body>
+  <div id = "entrep_inform">
+    <div class = "entrep_">
+      <h1> 업체 정보 </h1>
+      <img src="/<%=sess.info.entrep_logo%>">
+      <p>사업자 등급 <%=sess.info.entrep_grade%></p>
+      <p>사업자 번호 <%=sess.info.entrep_reg_num%></p>
+      <p>주소 <%=sess.info.entrep_address%></p>
+      <p>연락처 <%=sess.info.entrep_tel_no%></p>
+      <p>이메일 <%=sess.info.entrep_email%></p>
+      <p>상태 <%=sess.info.entrep_state%></p>
+      <button onclick="location.href = './e_prod'">상품 관리</button>
+      <button onclick = "location.href = './e_review'">리뷰 보기</button>
+      <button onclick = "location.href = './e_entrep'">정보 수정</button>
+    </div>
+    <div class="order">
+      <h1> 주문 관리 </h1>
+      <table>
+        <thead>
+          <tr>
+            <th class="o_no">주문번호</th>
+            <th class="o_date">주문시간</th>
+            <th class="o_price">가격</th>
+            <th class="o_state">상태</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%for(var i = 0;i<order_no.length; i++) {%>
+          <!-- <%var nameArray = name[i].split(',')%> -->
+          <tr>
+            <td><%=order_no[i]%></td>
+            <td><%=date[i]%></td>
+            <td><%=price[i]%></td>
+            <td><%=state[i]%></td>
+            <!-- <td><%for(var k = 0; k<nameArray.length; k++){%><%=nameArray[k]%></br> <%}%></td> -->
+          </tr>
+          <%}%>
+          <%for(var j = 0; j < 13-i; j++) {%>
+            <tr>
+              <td></br></td>
+              <td></br></td>
+              <td></br></td>
+              <td></br></td>
+            </tr>
+            <%}%>
+        </tbody>
+      </table>
+      <div class = "move">
+        <button onclick = "location.href = './e_order'">상세 정보</button>
+        <button onclick = "location.href = './e_stat_member_price'">단골 회원</button>
+        <button onclick = "location.href = './e_stat_prod_price'">통계 보기</button>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

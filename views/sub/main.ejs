@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>메인화면</title>
+</head>
+
+<style>
+  .main{
+    position: absolute;
+    transform: translate(-50%,-50%);
+    left: 50%;
+    top: 50%;
+  }
+    figure.snip1283 {
+        /*글꼴 */
+        color: #fff;
+        /*글자색 */
+        position: relative;
+        float: left;
+        overflow: hidden;
+        margin: 10px;
+        min-width: 100px;
+        max-width: 500px;
+        max-height: 500px;
+        width: 100%;
+        color: #166fa3;
+        text-align: left;
+        background-color: #A1C5E8;
+        font-size: 50px;
+        -webkit-perspective: 50em;
+        perspective: 50em;
+
+    }
+
+    figure.snip1283 * {
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        -webkit-transition: all 0.2s ease;
+        transition: all 0.2s ease;
+    }
+
+    figure.snip1283 img {
+        opacity: 1;
+        width: 100%;
+        -webkit-transform-origin: 50% 0%;
+        -ms-transform-origin: 50% 0%;
+        transform-origin: 50% 0%;
+
+    }
+
+    figure.snip1283 figcaption {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        -webkit-transform: rotateX(90deg);
+        transform: rotateX(90deg);
+        -webkit-transform-origin: 50% 100%;
+        -ms-transform-origin: 50% 100%;
+        transform-origin: 50% 100%;
+        z-index: 1;
+        opacity: 0;
+        padding: 20px 30px;
+    }
+
+    figure.snip1283 h3,
+    figure.snip1283 p {
+        line-height: 1.5em;
+    }
+
+    figure.snip1283 h3 {
+        margin: 0;
+        font-weight: 800;
+        text-transform: uppercase;
+    }
+
+    figure.snip1283 p {
+        font-size: 2rem;
+        font-weight: 500;
+        margin: 0 0 15px;
+    }
+
+    figure.snip1283 .read-more {
+        border: 2px solid #ffffff;
+        padding: 0.5em 1em;
+        font-size: 0.8em;
+        text-decoration: none;
+        color: #ffffff;
+        display: inline-block;
+        margin-top: 4rem;
+    }
+
+    figure.snip1283 .read-more:hover {
+        background-color: #7c9cba;
+        color: #000000;
+        border-radius: 50px;
+    }
+
+    figure.snip1283:hover img,
+    figure.snip1283.hover img {
+        -webkit-transform: rotateX(-90deg);
+        transform: rotateX(-90deg);
+        opacity: 0;
+    }
+
+    figure.snip1283:hover figcaption,
+    figure.snip1283.hover figcaption {
+        -webkit-transform: rotateX(0deg);
+        transform: rotateX(0deg);
+        opacity: 1;
+        -webkit-transition-delay: 0.2s;
+        transition-delay: 0.2s;
+    }
+</style>
+<body>
+    <div class="main">
+        <%for(var i=0;i<data.length; i++) { %>
+          <table>
+            <tbody>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        <div class="toies">
+            <figure class="snip1283" style="text-align: center; margin:0 auto; border: 2px solid #7c9cba ; border-radius: 40px;">
+                <img src="/<%=data[i].entrep_logo%>" alt="업체로고" />
+                <figcaption>
+                    <h3><%=data[i].entrep_mutual_name%></h3>
+                    <p>업종 : <%=data[i].entrep_class_name%> </p>
+                    <p>평점 : <%=data[i].entrep_review_grade%></p>
+                    <a href="/detail/<%=data[i].entrep_id%>" class="read-more">보러가기</a>
+                </figcaption>
+            </figure>
+        </div>
+        <% } %>
+    </div>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>회원정보</title>
+</head>
+<style>
+    .detail1,.detail2,.detail3,.detail_head {
+        position: absolute;
+        transform: translate(-50%, 0);
+    }
+    .detail1{
+      top : 30%;
+      left : 20%;
+    }
+    .detail2{
+      top : 30%;
+      left : 50%;
+    }
+    .detail3{
+      top : 30%;
+      left : 80%;
+    }
+    .detail_head{
+      top:20%;
+      left: 50%;
+    }
+</style>
+
+<body>
+  <h1 class = "detail_head">회원정보</h1>
+
+  <div class="detail1">
+        <div>
+            <h2><%=sess.info.member_name%></h2>
+            <div>
+                <hr style="border: 3px solid black;" />
+            </div>
+            <div style="width: 100%; float: left;">
+                <h4>등급:  <%=sess.info.member_grade%> </h4>
+                <h4>주소:  <%=sess.info.member_address%> </h4>
+                <h4>연락처:  <%=sess.info.member_tel_no%> </h4>
+                <h4>이메일:  <%=sess.info.member_email%> </h4>
+                <h4>총구매금액:  <%=sess.info.member_buy_sum%> </h4>
+            </div>
+        </div>
+  </div>
+
+  <div class="detail2">
+        <div style="margin: 10%;">
+            <h2 style="width: 300px;">관심업체</h2>
+            <div>
+                <hr style="border: 3px solid black;" />
+            </div>
+            <%for(var i=0;i<data.length; i++) { %>
+            <div style="width: 100%; float: left;">
+                <a href="/detail/<%=data[i].entrep_id%>"><%=data[i].entrep_mutual_name%></a>
+                <a href="/members/likeDelete/<%=data[i].entrep_id%>" style="color: #ff9393;">삭제</a>
+            </div>
+            <%}%>
+        </div>
+  </div>
+
+  <div class="detail3">
+        <div style="margin: 10%;">
+            <h2 style="width: 300px;">등록한 리뷰</h2>
+            <div>
+                <hr style="border: 3px solid black;" />
+            </div>
+            <%for(var i=0;i<data2.length; i++) { %>
+            <div style="width: 100%; float: left;">
+                <h4><%=data2[i].entrep_mutual_name%></h4>
+                <h4><%=data2[i].review_content%></h4>
+                <a href="/members/reviewDelete/<%=data2[i].review_no%>" style="color: #ff9393;">삭제</a>
+            </div>
+            <%}%>
+        </div>
+  </div>
+</body>
+
+</html>

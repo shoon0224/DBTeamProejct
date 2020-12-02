@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>장난감 상세보기</title>
+</head>
+<style>
+    .detail {
+        float: left;
+    }
+    .prodDetail{
+      text-align: center;
+      position: absolute;
+      transform: translate(-50%, 0);
+      top : 15%;
+      left : 50%;
+    }
+    .detail{
+      width: 100%;
+    }
+    .detail.detail_thum{
+      float: left;
+      position: relative;
+      margin: 100px;
+    }
+    .detail.stat{
+      float: left;
+      position: relative;
+      margin: 100px;
+    }
+</style>
+<script>
+    function cart(){
+        return true;
+    }
+    function order(frm){
+        var url =document.location.href;
+        console.log(url);
+        var cut=url.split('/');
+        console.log(cut[4]);
+            frm.action="/order/order/"+cut[4]+"/"+cut[5];
+            frm.submit();
+            return true;
+    }
+
+</script>
+
+<body>
+  <div class="prodDetail">
+    <%for(var i=0;i<data.length; i++) { %>
+    <form class="detail" action="/members/cart/<%= data[i].prod_id %>/<%= data[i].entrep_id %>" method="POST" style="width: 100%;"  onsubmit='return cart();'>
+        <div class="detail">
+            <h1 style="width: 300px;"><%=data[i].prod_name%></h1>
+            <div>
+                <hr style="border: 3px solid black;" />
+            </div>
+            <div class="detail_thum">
+                <img style="margin-right:5rem;float:left ;" src="/<%=data[i].prod_img%>" width="500" height="400" alt="상품이미지" />
+                <h4>상품가격 <%=data[i].prod_price%></h4>
+                <h4>상품상태 <%=data[i].prod_state%></h4>
+                <h4>상품분류 <%=data[i].prod_class_id%> </h4>
+                <%if(sess.info.member_id){%>
+                <p>상품수량 <input type="number" name="c_amount" min="1" max="100" step="1" value="1" /></p>
+                <%}%>
+                <%if(sess.info.member_id){%>
+                    <div style="float: left; width: 50%;text-align: right;">
+                        <input type='button'  style="padding-top:5px; padding-bottom:5px; margin-top: 10px; margin-bottom: 10px; font-size: 15px; background-color:rgb(248, 179, 219);
+                        width:200px; border-style: none; color: white;" value='구매하기' onclick='return order(this.form);'>
+                        <input type="submit" value="장바구니"
+                            style="margin-right: 10px; width: 200px; height: 35px; background-color:#7C9CBA; border-radius: 10px; border:1px solid black; font-size: 15px; color:white;">
+                    </div>
+                  <%}%>
+
+            </div>
+            <!-- <div class="stat">
+
+            </div> -->
+
+        </div>
+    </form>
+    <%} %>
+        <div class="detail" style="width: 100%;">
+            <div style="margin: 10%;">
+                <h1>상품상세이미지</h1>
+                <div>
+                    <hr style="border: 3px solid black;" />
+                </div>
+                <div style="width: 100%; text-align: center;">
+                    <%for(var i=0;i<data2.length; i++) { %>
+                    <img style="margin-left:5rem ;" src="/<%=data2[i].detail_img_name%>" width="500"
+                        height="400" alt="상품이미지" />
+                    <% } %>
+                </div>
+            </div>
+        </div>
+  </div>
+
+</body>
+
+</html>
